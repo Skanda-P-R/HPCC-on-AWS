@@ -164,7 +164,7 @@ Now open manifest.yaml:
 ```
 nano manifest.yaml
 ```
-Do the same for manifest.yaml file also, but DON'T FORGET to update the file system ID and the server name in the manifest.yaml file. The server name follows the below format:
+Do the same for manifest.yaml file also, but DON'T FORGET to update the File system ID, Region and the Server name in the manifest.yaml file. The server name follows the below format:
 <br>
 ```
 <EFS ID>.efs.<Region>.amazonaws.com

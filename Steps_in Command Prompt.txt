@@ -1,0 +1,644 @@
+Microsoft Windows [Version 10.0.19045.3693]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\WINDOWS\system32>aws configure
+AWS Access Key ID [****************OQ6I]: 
+AWS Secret Access Key [****************9cud]: 
+Default region name [eu-north-1]:
+Default output format [None]:
+
+C:\WINDOWS\system32>aws efs create-file-system  --throughput-mode bursting  --tags "Key=Name,Value=efs-Profitops" --region eu-north-1
+{
+    "OwnerId": "231848661388",
+    "CreationToken": "9b175737-b4e6-4e99-8236-e440ce218df5",
+    "FileSystemId": "fs-0ebe036d9c20f60b4",
+    "FileSystemArn": "arn:aws:elasticfilesystem:eu-north-1:231848661388:file-system/fs-0ebe036d9c20f60b4",
+    "CreationTime": "2023-11-28T16:50:54+05:30",
+    "LifeCycleState": "creating",
+    "Name": "efs-Profitops",
+    "NumberOfMountTargets": 0,
+    "SizeInBytes": {
+        "Value": 0,
+        "ValueInIA": 0,
+        "ValueInStandard": 0,
+        "ValueInArchive": 0
+    },
+    "PerformanceMode": "generalPurpose",
+    "Encrypted": false,
+    "ThroughputMode": "bursting",
+    "Tags": [
+        {
+            "Key": "Name",
+            "Value": "efs-Profitops"
+        }
+    ],
+    "FileSystemProtection": {
+        "ReplicationOverwriteProtection": "ENABLED"
+    }
+}
+
+
+C:\WINDOWS\system32>aws efs describe-file-systems --region eu-north-1
+{
+    "FileSystems": [
+        {
+            "OwnerId": "231848661388",
+            "CreationToken": "9b175737-b4e6-4e99-8236-e440ce218df5",
+            "FileSystemId": "fs-0ebe036d9c20f60b4",
+            "FileSystemArn": "arn:aws:elasticfilesystem:eu-north-1:231848661388:file-system/fs-0ebe036d9c20f60b4",
+            "CreationTime": "2023-11-28T16:50:54+05:30",
+            "LifeCycleState": "available",
+            "Name": "efs-Profitops",
+            "NumberOfMountTargets": 0,
+            "SizeInBytes": {
+                "Value": 6144,
+                "ValueInIA": 0,
+                "ValueInStandard": 6144,
+                "ValueInArchive": 0
+            },
+            "PerformanceMode": "generalPurpose",
+            "Encrypted": false,
+            "ThroughputMode": "bursting",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "efs-Profitops"
+                }
+            ],
+            "FileSystemProtection": {
+                "ReplicationOverwriteProtection": "ENABLED"
+            }
+        }
+    ]
+}
+
+
+C:\WINDOWS\system32>aws ec2 describe-vpcs --region eu-north-1
+{
+    "Vpcs": [
+        {
+            "CidrBlock": "172.31.0.0/16",
+            "DhcpOptionsId": "dopt-09ef702a4c8bd923f",
+            "State": "available",
+            "VpcId": "vpc-0d5fd5782fe9f6320",
+            "OwnerId": "231848661388",
+            "InstanceTenancy": "default",
+            "CidrBlockAssociationSet": [
+                {
+                    "AssociationId": "vpc-cidr-assoc-0bf83bb977395d9a6",
+                    "CidrBlock": "172.31.0.0/16",
+                    "CidrBlockState": {
+                        "State": "associated"
+                    }
+                }
+            ],
+            "IsDefault": true
+        }
+    ]
+}
+
+
+C:\WINDOWS\system32>aws ec2 describe-subnets --region eu-north-1 --filters "Name=vpc-id,Values=vpc-0d5fd5782fe9f6320"
+{
+    "Subnets": [
+        {
+            "AvailabilityZone": "eu-north-1c",
+            "AvailabilityZoneId": "eun1-az3",
+            "AvailableIpAddressCount": 4091,
+            "CidrBlock": "172.31.0.0/20",
+            "DefaultForAz": true,
+            "MapPublicIpOnLaunch": true,
+            "MapCustomerOwnedIpOnLaunch": false,
+            "State": "available",
+            "SubnetId": "subnet-08c46e833cac33b60",
+            "VpcId": "vpc-0d5fd5782fe9f6320",
+            "OwnerId": "231848661388",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "SubnetArn": "arn:aws:ec2:eu-north-1:231848661388:subnet/subnet-08c46e833cac33b60",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            }
+        },
+        {
+            "AvailabilityZone": "eu-north-1b",
+            "AvailabilityZoneId": "eun1-az2",
+            "AvailableIpAddressCount": 4091,
+            "CidrBlock": "172.31.32.0/20",
+            "DefaultForAz": true,
+            "MapPublicIpOnLaunch": true,
+            "MapCustomerOwnedIpOnLaunch": false,
+            "State": "available",
+            "SubnetId": "subnet-0c70d88c8c85ea859",
+            "VpcId": "vpc-0d5fd5782fe9f6320",
+            "OwnerId": "231848661388",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "SubnetArn": "arn:aws:ec2:eu-north-1:231848661388:subnet/subnet-0c70d88c8c85ea859",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            }
+        },
+        {
+            "AvailabilityZone": "eu-north-1a",
+            "AvailabilityZoneId": "eun1-az1",
+            "AvailableIpAddressCount": 4091,
+            "CidrBlock": "172.31.16.0/20",
+            "DefaultForAz": true,
+            "MapPublicIpOnLaunch": true,
+            "MapCustomerOwnedIpOnLaunch": false,
+            "State": "available",
+            "SubnetId": "subnet-0b13c7600a4aac5de",
+            "VpcId": "vpc-0d5fd5782fe9f6320",
+            "OwnerId": "231848661388",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "SubnetArn": "arn:aws:ec2:eu-north-1:231848661388:subnet/subnet-0b13c7600a4aac5de",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            }
+        }
+    ]
+}
+
+
+C:\WINDOWS\system32>aws efs create-mount-target --region eu-north-1 --file-system-id fs-0ebe036d9c20f60b4 --subnet-id subnet-0b13c7600a4aac5de
+{
+    "OwnerId": "231848661388",
+    "MountTargetId": "fsmt-077b5b58bf7e2b223",
+    "FileSystemId": "fs-0ebe036d9c20f60b4",
+    "SubnetId": "subnet-0b13c7600a4aac5de",
+    "LifeCycleState": "creating",
+    "IpAddress": "172.31.23.70",
+    "NetworkInterfaceId": "eni-0b46fd1549dfc1165",
+    "AvailabilityZoneId": "eun1-az1",
+    "AvailabilityZoneName": "eu-north-1a",
+    "VpcId": "vpc-0d5fd5782fe9f6320"
+}
+
+
+C:\WINDOWS\system32>aws efs create-mount-target --region eu-north-1 --file-system-id fs-0ebe036d9c20f60b4 --subnet-id subnet-0c70d88c8c85ea859
+{
+    "OwnerId": "231848661388",
+    "MountTargetId": "fsmt-0d985929f5c5cc800",
+    "FileSystemId": "fs-0ebe036d9c20f60b4",
+    "SubnetId": "subnet-0c70d88c8c85ea859",
+    "LifeCycleState": "creating",
+    "IpAddress": "172.31.36.192",
+    "NetworkInterfaceId": "eni-0844fc7e684e27ecd",
+    "AvailabilityZoneId": "eun1-az2",
+    "AvailabilityZoneName": "eu-north-1b",
+    "VpcId": "vpc-0d5fd5782fe9f6320"
+}
+
+
+C:\WINDOWS\system32>aws efs describe-mount-targets --region eu-north-1 --file-system-id fs-0ebe036d9c20f60b4
+{
+    "MountTargets": [
+        {
+            "OwnerId": "231848661388",
+            "MountTargetId": "fsmt-077b5b58bf7e2b223",
+            "FileSystemId": "fs-0ebe036d9c20f60b4",
+            "SubnetId": "subnet-0b13c7600a4aac5de",
+            "LifeCycleState": "creating",
+            "IpAddress": "172.31.23.70",
+            "NetworkInterfaceId": "eni-0b46fd1549dfc1165",
+            "AvailabilityZoneId": "eun1-az1",
+            "AvailabilityZoneName": "eu-north-1a",
+            "VpcId": "vpc-0d5fd5782fe9f6320"
+        },
+        {
+            "OwnerId": "231848661388",
+            "MountTargetId": "fsmt-0d985929f5c5cc800",
+            "FileSystemId": "fs-0ebe036d9c20f60b4",
+            "SubnetId": "subnet-0c70d88c8c85ea859",
+            "LifeCycleState": "creating",
+            "IpAddress": "172.31.36.192",
+            "NetworkInterfaceId": "eni-0844fc7e684e27ecd",
+            "AvailabilityZoneId": "eun1-az2",
+            "AvailabilityZoneName": "eu-north-1b",
+            "VpcId": "vpc-0d5fd5782fe9f6320"
+        }
+    ]
+}
+
+
+
+C:\WINDOWS\system32>eksctl create cluster --name profit-3 --region eu-north-1 --nodegroup-name profit-workers --node-type t3.medium --nodes 3 --nodes-min 1 --nodes-max 4 --managed --vpc-public-subnets subnet-0b13c7600a4aac5de --vpc-public-subnets subnet-0c70d88c8c85ea859
+2023-11-28 16:57:42 [ℹ]  eksctl version 0.164.0
+2023-11-28 16:57:42 [ℹ]  using region eu-north-1
+2023-11-28 16:57:44 [✔]  using existing VPC (vpc-0d5fd5782fe9f6320) and subnets (private:map[] public:map[eu-north-1a:{subnet-0b13c7600a4aac5de eu-north-1a 172.31.16.0/20 0 } eu-north-1b:{subnet-0c70d88c8c85ea859 eu-north-1b 172.31.32.0/20 0 }])
+2023-11-28 16:57:44 [!]  custom VPC/subnets will be used; if resulting cluster doesn't function as expected, make sure to review the configuration of VPC/subnets
+2023-11-28 16:57:44 [ℹ]  nodegroup "profit-workers" will use "" [AmazonLinux2/1.27]
+2023-11-28 16:57:44 [ℹ]  using Kubernetes version 1.27
+2023-11-28 16:57:44 [ℹ]  creating EKS cluster "profit-3" in "eu-north-1" region with managed nodes
+2023-11-28 16:57:44 [ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial managed nodegroup
+2023-11-28 16:57:44 [ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=eu-north-1 --cluster=profit-3'
+2023-11-28 16:57:44 [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "profit-3" in "eu-north-1"
+2023-11-28 16:57:44 [ℹ]  CloudWatch logging will not be enabled for cluster "profit-3" in "eu-north-1"
+2023-11-28 16:57:44 [ℹ]  you can enable it with 'eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=eu-north-1 --cluster=profit-3'
+2023-11-28 16:57:44 [ℹ]
+2 sequential tasks: { create cluster control plane "profit-3",
+    2 sequential sub-tasks: {
+        wait for control plane to become ready,
+        create managed nodegroup "profit-workers",
+    }
+}
+2023-11-28 16:57:44 [ℹ]  building cluster stack "eksctl-profit-3-cluster"
+2023-11-28 16:57:45 [ℹ]  deploying stack "eksctl-profit-3-cluster"
+2023-11-28 16:58:16 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 16:58:46 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 16:59:47 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:00:48 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:01:49 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:02:50 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:03:51 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:04:52 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:05:52 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-cluster"
+2023-11-28 17:07:59 [ℹ]  building managed nodegroup stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:08:00 [ℹ]  deploying stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:08:00 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:08:31 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:09:14 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:09:56 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:11:48 [ℹ]  waiting for CloudFormation stack "eksctl-profit-3-nodegroup-profit-workers"
+2023-11-28 17:11:48 [ℹ]  waiting for the control plane to become ready
+2023-11-28 17:11:49 [✔]  saved kubeconfig as "C:\\Users\\skand\\.kube\\config"
+2023-11-28 17:11:49 [ℹ]  no tasks
+2023-11-28 17:11:49 [✔]  all EKS cluster resources for "profit-3" have been created
+2023-11-28 17:11:50 [ℹ]  nodegroup "profit-workers" has 3 node(s)
+2023-11-28 17:11:50 [ℹ]  node "ip-172-31-17-245.eu-north-1.compute.internal" is ready
+2023-11-28 17:11:50 [ℹ]  node "ip-172-31-40-251.eu-north-1.compute.internal" is ready
+2023-11-28 17:11:50 [ℹ]  node "ip-172-31-47-6.eu-north-1.compute.internal" is ready
+2023-11-28 17:11:50 [ℹ]  waiting for at least 1 node(s) to become ready in "profit-workers"
+2023-11-28 17:11:50 [ℹ]  nodegroup "profit-workers" has 3 node(s)
+2023-11-28 17:11:50 [ℹ]  node "ip-172-31-17-245.eu-north-1.compute.internal" is ready
+2023-11-28 17:11:50 [ℹ]  node "ip-172-31-40-251.eu-north-1.compute.internal" is ready
+2023-11-28 17:11:50 [ℹ]  node "ip-172-31-47-6.eu-north-1.compute.internal" is ready
+2023-11-28 17:11:53 [ℹ]  kubectl command should work with "C:\\Users\\skand\\.kube\\config", try 'kubectl get nodes'
+2023-11-28 17:11:53 [✔]  EKS cluster "profit-3" in "eu-north-1" region is ready
+
+C:\WINDOWS\system32>eksctl get clusters
+NAME            REGION          EKSCTL CREATED
+profit-3        eu-north-1      True
+
+C:\WINDOWS\system32>kubectl get pods --all-namespaces
+NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
+kube-system   aws-node-4jsgm             1/1     Running   0          2m56s
+kube-system   aws-node-5v2wh             1/1     Running   0          2m55s
+kube-system   aws-node-h7xvw             1/1     Running   0          2m55s
+kube-system   coredns-6bffbcfd55-ckwlp   1/1     Running   0          9m20s
+kube-system   coredns-6bffbcfd55-x6jtw   1/1     Running   0          9m20s
+kube-system   kube-proxy-2fgxj           1/1     Running   0          2m55s
+kube-system   kube-proxy-4cs6q           1/1     Running   0          2m56s
+kube-system   kube-proxy-ngc7d           1/1     Running   0          2m55s
+
+C:\WINDOWS\system32>kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/ecr/?ref=release-1.3"
+# Warning: 'bases' is deprecated. Please use 'resources' instead. Run 'kustomize edit fix' to update your Kustomization automatically.
+serviceaccount/efs-csi-controller-sa created
+serviceaccount/efs-csi-node-sa created
+clusterrole.rbac.authorization.k8s.io/efs-csi-external-provisioner-role created
+clusterrolebinding.rbac.authorization.k8s.io/efs-csi-provisioner-binding created
+deployment.apps/efs-csi-controller created
+Warning: spec.template.spec.nodeSelector[beta.kubernetes.io/os]: deprecated since v1.14; use "kubernetes.io/os" instead
+daemonset.apps/efs-csi-node created
+csidriver.storage.k8s.io/efs.csi.aws.com configured
+
+C:\WINDOWS\system32>kubectl get pods -n kube-system
+NAME                                  READY   STATUS              RESTARTS   AGE
+aws-node-4jsgm                        1/1     Running             0          4m12s
+aws-node-5v2wh                        1/1     Running             0          4m11s
+aws-node-h7xvw                        1/1     Running             0          4m11s
+coredns-6bffbcfd55-ckwlp              1/1     Running             0          10m
+coredns-6bffbcfd55-x6jtw              1/1     Running             0          10m
+efs-csi-controller-84bd957b6b-4xlf5   0/3     ContainerCreating   0          36s
+efs-csi-controller-84bd957b6b-6shs7   0/3     ContainerCreating   0          36s
+efs-csi-node-45xpm                    0/3     ContainerCreating   0          35s
+efs-csi-node-59hk6                    0/3     ContainerCreating   0          35s
+efs-csi-node-xjklv                    0/3     ContainerCreating   0          35s
+kube-proxy-2fgxj                      1/1     Running             0          4m11s
+kube-proxy-4cs6q                      1/1     Running             0          4m12s
+kube-proxy-ngc7d                      1/1     Running             0          4m11s
+
+C:\WINDOWS\system32>kubectl get pods -n kube-system
+NAME                                  READY   STATUS              RESTARTS   AGE
+aws-node-4jsgm                        1/1     Running             0          4m23s
+aws-node-5v2wh                        1/1     Running             0          4m22s
+aws-node-h7xvw                        1/1     Running             0          4m22s
+coredns-6bffbcfd55-ckwlp              1/1     Running             0          10m
+coredns-6bffbcfd55-x6jtw              1/1     Running             0          10m
+efs-csi-controller-84bd957b6b-4xlf5   3/3     Running             0          47s
+efs-csi-controller-84bd957b6b-6shs7   0/3     ContainerCreating   0          47s
+efs-csi-node-45xpm                    0/3     ContainerCreating   0          46s
+efs-csi-node-59hk6                    3/3     Running             0          46s
+efs-csi-node-xjklv                    3/3     Running             0          46s
+kube-proxy-2fgxj                      1/1     Running             0          4m22s
+kube-proxy-4cs6q                      1/1     Running             0          4m23s
+kube-proxy-ngc7d                      1/1     Running             0          4m22s
+
+C:\WINDOWS\system32>kubectl get pods -n kube-system
+NAME                                  READY   STATUS    RESTARTS   AGE
+aws-node-4jsgm                        1/1     Running   0          4m38s
+aws-node-5v2wh                        1/1     Running   0          4m37s
+aws-node-h7xvw                        1/1     Running   0          4m37s
+coredns-6bffbcfd55-ckwlp              1/1     Running   0          11m
+coredns-6bffbcfd55-x6jtw              1/1     Running   0          11m
+efs-csi-controller-84bd957b6b-4xlf5   3/3     Running   0          62s
+efs-csi-controller-84bd957b6b-6shs7   3/3     Running   0          62s
+efs-csi-node-45xpm                    3/3     Running   0          61s
+efs-csi-node-59hk6                    3/3     Running   0          61s
+efs-csi-node-xjklv                    3/3     Running   0          61s
+kube-proxy-2fgxj                      1/1     Running   0          4m37s
+kube-proxy-4cs6q                      1/1     Running   0          4m38s
+kube-proxy-ngc7d                      1/1     Running   0          4m37s
+
+C:\WINDOWS\system32>aws eks describe-cluster --name profit-3
+{
+    "cluster": {
+        "name": "profit-3",
+        "arn": "arn:aws:eks:eu-north-1:231848661388:cluster/profit-3",
+        "createdAt": "2023-11-28T16:58:18.488000+05:30",
+        "version": "1.27",
+        "endpoint": "https://537668A414B0FBBD286D29EA8C4EDD01.sk1.eu-north-1.eks.amazonaws.com",
+        "roleArn": "arn:aws:iam::231848661388:role/eksctl-profit-3-cluster-ServiceRole-GQcURC7kqL2j",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-0c70d88c8c85ea859",
+                "subnet-0b13c7600a4aac5de"
+            ],
+            "securityGroupIds": [
+                "sg-002207559185155cc"
+            ],
+            "clusterSecurityGroupId": "sg-072c2a271de7b3f5d",
+            "vpcId": "vpc-0d5fd5782fe9f6320",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false,
+            "publicAccessCidrs": [
+                "0.0.0.0/0"
+            ]
+        },
+        "kubernetesNetworkConfig": {
+            "serviceIpv4Cidr": "10.100.0.0/16",
+            "ipFamily": "ipv4"
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "identity": {
+            "oidc": {
+                "issuer": "https://oidc.eks.eu-north-1.amazonaws.com/id/537668A414B0FBBD286D29EA8C4EDD01"
+            }
+        },
+        "status": "ACTIVE",
+        "certificateAuthority": {
+            "data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJYmYwaXdRQW5MU0l3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpFeE1qZ3hNVEkzTXpKYUZ3MHpNekV4TWpVeE1UTXlNekphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURnZlZES2owSjRsOU8zV1c1bWRCUFFOR25BTjFQN1NZKzRGclRQM1RQQ1FCRkQ3QmRZZDhscjVId2EKQmd3cy9XL0FwWjlDQ1JaT2labktCb1p4NHRXaTRCblFYT0VSeDNEcEF2MmpiQnV4U3dUYXoxWDBpRCt1cCtWbwpIcDVFZFBxdUxzRVdSQ29NRFhUTHVOTldYY2F3QW1nTTgvRm9JV2NrRHVJWHNCeG9jOFFZSE8vTlNKVFo2d0Z5CnVXZ0lsa3FCeFphMkR3WEdOSmhLazBFeGczRS9oNWNWRHJ4M3pCWHhIU3RFa2RMN1NFT3RpV1R6bVV0VS9ZaEQKUnlZdXNUVndPZnZPaWZOTE9PZTlUTDJid0xVeFlXVkxFRUJnL2ZlSlRGQTlwbjBhWmV1RlhiY3A0c0dwV212dgp2V0ZTc0Y5eEJjOTJFdUtBeGRUODB4eGU2OHkxQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTM2N5UE8yMG1RaHM3WnhqYjNmK1E5SDZGRFdUQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ3cwbmZPaFdJbgpCcURYTFRwVktyR1pMNE1qSkNqWDFmakpCWHl5bWtza050c2lrL1BMcmxmQ1dmK2JFYStJREVZYUZqOWtXS2dGCmxjT1M2OHVldEtvYWc4WVUxbzYvQW1YNEMrZ0VjamFWMzVTbGhYZWx3Zys5RkU4YWV1UEYvWlVCWkMvT1hNRGMKSjRoNElZNURxMnRIU3dScjB6RlJCSUFwOE90TXpCZnk2K3B4Z1N2V0RMY3dNcFh6eUZLYjA2RDBiVG5wVStiYgo1L2tJVitFVWRVTCtLR05OcjZrNVo0TkMrYk43c1ZVbyswTHBSVlEvVC95aWhOeDJ4USsyVkhOSlVTMVJBWVV6CkU5NmkxdzJPN1hoSlpEdjZWWGw3anBpWENpSWh5RHVjVTcxa0RDWjI4bDZVdTZUUStoSmt4N0FxcVRQWE9GdWIKUmdJQ0tXM1hJVkRKCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+        },
+        "platformVersion": "eks.8",
+        "tags": {
+            "aws:cloudformation:stack-name": "eksctl-profit-3-cluster",
+            "alpha.eksctl.io/cluster-name": "profit-3",
+            "aws:cloudformation:stack-id": "arn:aws:cloudformation:eu-north-1:231848661388:stack/eksctl-profit-3-cluster/27135340-8de1-11ee-9a4c-0a67cdcfa168",
+            "eksctl.cluster.k8s.io/v1alpha1/cluster-name": "profit-3",
+            "alpha.eksctl.io/cluster-oidc-enabled": "false",
+            "aws:cloudformation:logical-id": "ControlPlane",
+            "alpha.eksctl.io/eksctl-version": "0.164.0",
+            "Name": "eksctl-profit-3-cluster/ControlPlane"
+        }
+    }
+}
+
+
+C:\WINDOWS\system32>aws eks describe-cluster --name profit-3 --query cluster.resourcesVpcConfig.clusterSecurityGroupId
+"sg-072c2a271de7b3f5d"
+
+
+C:\WINDOWS\system32>aws efs describe-mount-target-security-groups --mount-target-id fsmt-077b5b58bf7e2b223
+{
+    "SecurityGroups": [
+        "sg-0c75177b24f0a1d3d"
+    ]
+}
+
+
+C:\WINDOWS\system32>aws efs describe-mount-target-security-groups --mount-target-id fsmt-0d985929f5c5cc800
+{
+    "SecurityGroups": [
+        "sg-0c75177b24f0a1d3d"
+    ]
+}
+
+
+C:\WINDOWS\system32>aws ec2 authorize-security-group-ingress --group-id sg-0c75177b24f0a1d3d --protocol tcp --port 2049 --source-group sg-072c2a271de7b3f5d --region eu-north-1
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-0da6098a6081f1fce",
+            "GroupId": "sg-0c75177b24f0a1d3d",
+            "GroupOwnerId": "231848661388",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 2049,
+            "ToPort": 2049,
+            "ReferencedGroupInfo": {
+                "GroupId": "sg-072c2a271de7b3f5d",
+                "UserId": "231848661388"
+            }
+        }
+    ]
+}
+
+
+C:\WINDOWS\system32>git clone https://github.com/kubernetes-incubator/external-storage
+Cloning into 'external-storage'...
+remote: Enumerating objects: 64319, done.
+remote: Total 64319 (delta 0), reused 0 (delta 0), pack-reused 64319
+Receiving objects: 100% (64319/64319), 113.79 MiB | 4.99 MiB/s, done.
+
+Resolving deltas: 100% (29663/29663), done.
+Updating files: 100% (4039/4039), done.
+
+C:\WINDOWS\system32>cd external-storage/aws/efs/deploy/
+
+C:\Windows\System32\external-storage\aws\efs\deploy>kubectl apply -f rbac.yaml
+clusterrole.rbac.authorization.k8s.io/efs-provisioner-runner created
+clusterrolebinding.rbac.authorization.k8s.io/run-efs-provisioner created
+role.rbac.authorization.k8s.io/leader-locking-efs-provisioner created
+rolebinding.rbac.authorization.k8s.io/leader-locking-efs-provisioner created
+serviceaccount/efs-provisioner created
+
+C:\Windows\System32\external-storage\aws\efs\deploy>kubectl apply -f manifest.yaml
+configmap/efs-provisioner created
+deployment.apps/efs-provisioner created
+storageclass.storage.k8s.io/aws-efs created
+persistentvolumeclaim/efs created
+
+C:\Windows\System32\external-storage\aws\efs\deploy>kubectl get pods
+NAME                               READY   STATUS    RESTARTS   AGE
+efs-provisioner-7844dd8b94-kbglk   1/1     Running   0          12s
+
+C:\Windows\System32\external-storage\aws\efs\deploy>kubectl get pvc
+NAME   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+efs    Bound    pvc-6cf35afd-b334-4fd8-9e4d-34819072e1f2   1Mi        RWX            aws-efs        9m16s
+
+C:\Windows\System32\external-storage\aws\efs\deploy>kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM         STORAGECLASS   REASON   AGE
+pvc-6cf35afd-b334-4fd8-9e4d-34819072e1f2   1Mi        RWX            Delete           Bound    default/efs   aws-efs                 37s
+
+C:\Windows\System32\external-storage\aws\efs\deploy>helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "hpcc" chart repository
+...Successfully got an update from the "efs-provisioner" chart repository
+Update Complete. ⎈Happy Helming!⎈
+
+C:\Windows\System32>helm repo add hpcc https://hpcc-systems.github.io/helm-chart/
+
+C:\Windows\System32>helm repo list
+NAME            URL
+efs-provisioner https://charts.helm.sh/stable
+hpcc            https://hpcc-systems.github.io/helm-chart/
+
+C:\Windows\System32>helm show values hpcc/hpcc > myvalues.yaml
+
+C:\Windows\System32>notepad myvalues.yaml
+
+C:\Windows\System32>helm install mycluster hpcc/hpcc --values myvalues.yaml
+NAME: mycluster
+LAST DEPLOYED: Tue Nov 28 17:52:09 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Thank you for installing the HPCC chart version 9.4.12 using image "hpccsystems/platform-core:9.4.12"
+     **** WARNING: The configuration contains ephemeral planes: [dali sasha dll data mydropzone debug] ****
+     **** WARNING: Default cost parameters are being used for the storage planes: [dali sasha dll data mydropzone debug] ****
+     **** WARNING: Resources are missing for components: [spray-service mydali dfuserver hthor roxie-workunit myeclccserver eclscheduler eclwatch eclservices eclqueries esdl-sandbox sql2ecl dfs roxie dfurecovery-archiver dfuwu-archiver file-expiry wu-archiver thor] ****
+     **** WARNING: Cost calculation requires resources to be provided for components: [hthor roxie-workunit myeclccserver thor] ****
+     **** WARNING: Default cpu cost rate is being used for components: [hthor roxie-workunit myeclccserver thor] ****
+     **** WARNING: Insecure feature enabled in ecl: [embedded extern pipe]  ****
+     **** WARNING: tls disabled for esp services: [eclwatch eclservices eclqueries esdl-sandbox sql2ecl dfs] ****
+     **** WARNING: egress control to API not restricted (kubeApiCidr/kubeApiPort not provided) ****
+
+This chart has defined the following HPCC components:
+  dafilesrv.spray-service
+  dali.mydali
+  dfuserver.dfuserver
+  eclagent.hthor
+  eclagent.roxie-workunit
+  eclccserver.myeclccserver
+  eclscheduler.eclscheduler
+  esp.eclwatch
+  esp.eclservices
+  esp.eclqueries
+  esp.esdl-sandbox
+  esp.sql2ecl
+  esp.dfs
+  roxie.roxie
+  thor.thor
+  dali.sasha.coalescer
+  sasha.dfurecovery-archiver
+  sasha.dfuwu-archiver
+  sasha.file-expiry
+  sasha.wu-archiver
+
+C:\Windows\System32>kubectl get pods
+NAME                                          READY   STATUS              RESTARTS   AGE
+dfs-6c9b878c-mr2z8                            0/1     ContainerCreating   0          30s
+dfuserver-657bd9646c-sm9ks                    0/1     ContainerCreating   0          31s
+eclqueries-5c6d98fc74-qw7k7                   0/1     ContainerCreating   0          30s
+eclscheduler-59cf9b4ddb-94g55                 0/1     ContainerCreating   0          30s
+eclservices-85586c4cc5-zpkq2                  0/1     ContainerCreating   0          30s
+eclwatch-7845ff48b8-w7vpm                     0/1     ContainerCreating   0          29s
+efs-provisioner-7844dd8b94-kbglk              1/1     Running             0          21m
+esdl-sandbox-595ddf45b-9pddg                  0/1     ContainerCreating   0          31s
+hthor-6d7dfb66cb-xd7dm                        0/1     ContainerCreating   0          30s
+mydali-5fd555dd56-dpf7w                       0/2     ContainerCreating   0          31s
+myeclccserver-584cbf5bbc-9krjs                0/1     ContainerCreating   0          30s
+roxie-agent-1-7d7dcf7cb8-59bgf                0/1     ContainerCreating   0          29s
+roxie-agent-1-7d7dcf7cb8-v2lmz                0/1     ContainerCreating   0          28s
+roxie-agent-2-65d584bd67-cj464                0/1     ContainerCreating   0          28s
+roxie-agent-2-65d584bd67-xm2wl                0/1     ContainerCreating   0          28s
+roxie-toposerver-799fc6bbff-528wn             0/1     ContainerCreating   0          29s
+roxie-workunit-9797cdb49-gw8g5                0/1     ContainerCreating   0          30s
+sasha-dfurecovery-archiver-59575c7bbd-kjl6c   0/1     ContainerCreating   0          28s
+sasha-dfuwu-archiver-54b9f57574-vt4f2         0/1     ContainerCreating   0          30s
+sasha-file-expiry-65cdf45ccc-ldbg7            0/1     ContainerCreating   0          29s
+sasha-wu-archiver-655bb6b975-74gkf            0/1     ContainerCreating   0          30s
+spray-service-75f759677f-pznz2                0/1     ContainerCreating   0          31s
+sql2ecl-79ff7546f9-8kfbh                      0/1     ContainerCreating   0          30s
+thor-eclagent-5854d5f49b-kcjvj                0/1     ContainerCreating   0          28s
+thor-thoragent-7c4694d765-h2hxr               0/1     ContainerCreating   0          31s
+
+C:\Windows\System32>kubectl get pods
+Unable to connect to the server: net/http: TLS handshake timeout
+
+C:\Windows\System32>kubectl get pods
+NAME                                          READY   STATUS    RESTARTS   AGE
+dfs-6c9b878c-mr2z8                            1/1     Running   0          2m6s
+dfuserver-657bd9646c-sm9ks                    1/1     Running   0          2m7s
+eclqueries-5c6d98fc74-qw7k7                   1/1     Running   0          2m6s
+eclscheduler-59cf9b4ddb-94g55                 1/1     Running   0          2m6s
+eclservices-85586c4cc5-zpkq2                  1/1     Running   0          2m6s
+eclwatch-7845ff48b8-w7vpm                     1/1     Running   0          2m5s
+efs-provisioner-7844dd8b94-kbglk              1/1     Running   0          23m
+esdl-sandbox-595ddf45b-9pddg                  1/1     Running   0          2m7s
+hthor-6d7dfb66cb-xd7dm                        1/1     Running   0          2m6s
+mydali-5fd555dd56-dpf7w                       2/2     Running   0          2m7s
+myeclccserver-584cbf5bbc-9krjs                1/1     Running   0          2m6s
+roxie-agent-1-7d7dcf7cb8-59bgf                1/1     Running   0          2m5s
+roxie-agent-1-7d7dcf7cb8-v2lmz                1/1     Running   0          2m4s
+roxie-agent-2-65d584bd67-cj464                1/1     Running   0          2m4s
+roxie-agent-2-65d584bd67-xm2wl                1/1     Running   0          2m4s
+roxie-toposerver-799fc6bbff-528wn             1/1     Running   0          2m5s
+roxie-workunit-9797cdb49-gw8g5                1/1     Running   0          2m6s
+sasha-dfurecovery-archiver-59575c7bbd-kjl6c   1/1     Running   0          2m4s
+sasha-dfuwu-archiver-54b9f57574-vt4f2         1/1     Running   0          2m6s
+sasha-file-expiry-65cdf45ccc-ldbg7            1/1     Running   0          2m5s
+sasha-wu-archiver-655bb6b975-74gkf            1/1     Running   0          2m6s
+spray-service-75f759677f-pznz2                1/1     Running   0          2m7s
+sql2ecl-79ff7546f9-8kfbh                      1/1     Running   0          2m6s
+thor-eclagent-5854d5f49b-kcjvj                1/1     Running   0          2m4s
+thor-thoragent-7c4694d765-h2hxr               1/1     Running   0          2m7s
+
+C:\Windows\System32>kubectl get svc
+NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)          AGE
+dfs                    LoadBalancer   10.100.48.253    a3c4d8b4e07c24a11aface51b649b392-855644442.eu-north-1.elb.amazonaws.com    8520:30652/TCP   2m33s
+eclqueries             LoadBalancer   10.100.137.33    abcfa8abfec7748b49878a6477628e80-1647093279.eu-north-1.elb.amazonaws.com   8002:31884/TCP   2m33s
+eclservices            ClusterIP      10.100.9.183     <none>                                                                     8010/TCP         2m33s
+eclwatch               LoadBalancer   10.100.9.175     aa9ada7e14ae348a7b14e273bf2bf9e3-528934040.eu-north-1.elb.amazonaws.com    8010:31298/TCP   2m33s
+esdl-sandbox           LoadBalancer   10.100.130.129   af8f65010a5ea4a0491bec93b5131466-1302917652.eu-north-1.elb.amazonaws.com   8899:31632/TCP   2m33s
+kubernetes             ClusterIP      10.100.0.1       <none>                                                                     443/TCP          52m
+mydali                 ClusterIP      10.100.173.217   <none>                                                                     7070/TCP         2m33s
+roxie                  LoadBalancer   10.100.102.22    aad410eb314b04ab4a4a2365a558669b-1156729706.eu-north-1.elb.amazonaws.com   9876:31127/TCP   2m33s
+roxie-toposerver       ClusterIP      None             <none>                                                                     9004/TCP         2m33s
+sasha-coalescer        ClusterIP      10.100.4.215     <none>                                                                     8877/TCP         2m33s
+sasha-dfuwu-archiver   ClusterIP      10.100.55.210    <none>                                                                     8877/TCP         2m33s
+sasha-wu-archiver      ClusterIP      10.100.37.171    <none>                                                                     8877/TCP         2m33s
+spray-service          ClusterIP      10.100.1.97      <none>                                                                     7300/TCP         2m33s
+sql2ecl                LoadBalancer   10.100.50.247    ad403eda7a8f14ac58daffda6e6454ee-1195065112.eu-north-1.elb.amazonaws.com   8510:30328/TCP   2m33s
+
+C:\Windows\System32>

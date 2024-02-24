@@ -90,7 +90,7 @@ aws efs describe-file-systems --region <REGION>
 ```
 aws ec2 describe-vpcs --region <REGION>
 ```
-To deploy subnets in the VPC, run these foloowing commands:
+To deploy subnets in the VPC, run these following commands:
 ```
 aws ec2 describe-subnets --region <REGION> --filters "Name=vpc-id,Values=<VPC ID>"
 ```
@@ -223,6 +223,76 @@ This chart has defined the following HPCC components:
   sasha.file-expiry
   sasha.wu-archiver
 ```
+Now instead of installing the default HPCC Systems platform, we can create a custom configuration YAML file and deploy HPCC System platform using the default configuration plus the customizations. It can be done as follows:
+### To create custom configuration chart for two Roxies and two Thors
+We can create a new YAML file named "customroxie.yaml", then we can copy the default values from "myvalues.yaml" file as follows:
+```
+helm show values hpcc/hpcc > myvalues.yaml
+```
+```
+nano myvalues.yaml
+```
+Now copy the entire roxie section from this file, the open "customroxie.yaml" file and paste it. In the second block, rename the name and prefix name to "roxie2"<br>
+Now the "customroxie.yaml" file will have content as follows:
+```
+roxie:
+- name: roxie
+ disabled: false
+ prefix: roxie
+ services:
+ - name: roxie
+ servicePort: 9876
+ listenQueue: 200
+ numThreads: 30
+ visibility: local
+ replicas: 2
+ numChannels: 2
+ serverReplicas: 0
+ localAgent: false
+ traceLevel: 1
+ topoServer:
+ replicas: 1
+- name: roxie2
+ disabled: false
+ prefix: roxie2
+ services:
+ - name: roxie2
+ servicePort: 9876
+ listenQueue: 200
+ numThreads: 30
+ visibility: local
+ replicas: 2
+ numChannels: 2
+ serverReplicas: 0
+ localAgent: false
+ traceLevel: 1
+ topoServer:
+ replicas: 1
+```
+The same thing can be done for thor as well. Create a new YAML file "customthor.yaml". Copy the thor content block from "myvalues.yaml", paste it in "customthor.yaml", then rename the second thor name and prefix name to "thor2".<br>
+Now the "customthor.yaml" will have contents as follows:
+```
+thor:
+- name: thor
+ prefix: thor
+ numWorkers: 2
+ maxJobs: 4
+ maxGraphs: 2
+- name: thor2
+ prefix: thor2
+ numWorkers: 10
+ maxJobs: 4
+ maxGraphs: 2
+```
+Now to install HPCC Systems platform with the custom configurations: we can run the following command:
+```
+helm install mycluster hpcc/hpcc -f customroxie.yaml -f customthor.yaml
+```
+To upgrade the cluster (which is already installed) with this custom configuration, we run the below command:
+```
+helm upgrade mycluster hpcc/hpcc -f customroxie.yaml -f customthor.yaml
+```
+## To get ECL Watch IP Address
 Now, run this command and wait for all the services' status to turn to 'Running', NOT 'ContainerCreating':
 ```
 kubectl get pods

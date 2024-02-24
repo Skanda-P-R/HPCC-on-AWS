@@ -22,6 +22,7 @@ Next create an IAM user and make a note of the ACCESS_KEY and the SECRET_KEY.
 <br><br><br>
 ![image](https://github.com/Skanda-P-R/HPCC-on-AWS/assets/115518870/25098f0b-7bf0-4675-b2e8-04e3452da9b5)
 <br><br>
+
 Here, we can see an IAM user has been created. In the left panel, select Policies, and click on “Add Policies” and select “Create Inline Policy”. Now in the “Policy Editor” select “JSON” and paste this text:
 ```
 {

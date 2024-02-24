@@ -150,13 +150,7 @@ git clone https://github.com/kubernetes-incubator/external-storage
 ```
 cd external-storage/aws/efs/deploy/
 ```
-Open rbac.yaml file as follows:
-```
-nano rbac.yaml
-```
-Nano text editor will be opened, copy the contents of the rbac.yaml in this repository, to the opened file, then click save and exit.
-<br>
-Apply this to efs-provisoner:
+The below command is used to set up Role-Based Access Control (RBAC) configurations for the AWS Elastic File System as part of the external storage for Kubernetes:
 ```
 kubectl apply -f rbac.yaml
 ```
@@ -164,12 +158,21 @@ Now open manifest.yaml:
 ```
 nano manifest.yaml
 ```
-Do the same for manifest.yaml file also, but DON'T FORGET to update the File system ID, Region and the Server name in the manifest.yaml file. The server name follows the below format:
+Now, in 7th and 8th line, replace "yourEFSsystemid" with your EFS ID, and "regionyourEFSisin" with the Region where EFS is deployed.<br>
+Also in line 56, you will see something like this:
+```
+server: yourEFSsystemID.efs.yourEFSregion.amazonaws.com
+```
+Here, enter your EFS ID and Region in the same format. For the demonstration purpose, I would enter it as follows:
+```
+server: fs-0ebe036d9c20f60b4.efs.eu-north-1.amazonaws.com
+```
 <br>
-```
-<EFS ID>.efs.<Region>.amazonaws.com
-```
-Apply this to efs-provisoner:
+This manifest deploys an External Storage Provisioner for AWS EFS using a ConfigMap for configuration, a Deployment to manage the provisioner pods, a StorageClass to define the storage class for dynamic provisioning, and a PersistentVolumeClaim to request storage from the provisioner.
+<br><br>
+By running the below command, Kubernetes will read the contents of the manifest.yaml file and attempt to create or update the specified resources based on the definitions provided in the file.
+<br>
+
 ```
 kubectl apply -f manifest.yaml
 ```
@@ -186,16 +189,11 @@ helm repo update
 helm repo add hpcc https://hpcc-systems.github.io/helm-chart/
 ```
 ```
-helm show values hpcc/hpcc > myvalues.yaml
+helm install <Helm Cluster name> hpcc/hpcc --version=9.4.0
 ```
-```
-nano myvalues.yaml
-```
-Here also, copy the contents of myvalues.yaml file from this repository, to the file opened.
-```
-helm install <Helm Cluster name> hpcc/hpcc --values myvalues.yaml
-```
-We will see the output as follows:
+Here, you can specify which version you have to install, so that whenever you are installing plugins or other modules, you will have an idea in which version you have to install. You can skip this version tag also.
+<br><br>
+When we run the above command, we will see the output as follows:
 ```
 NAME: <Helm Cluster Name>
 LAST DEPLOYED: Tue Nov 28 17:52:09 2023

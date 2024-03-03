@@ -159,10 +159,15 @@ Now open manifest.yaml:
 ```
 nano manifest.yaml
 ```
-Now, in 7th and 8th line, replace "yourEFSsystemid" with your EFS ID, and "regionyourEFSisin" with the Region where EFS is deployed.<br>
+Now, in 7th and 8th line,you will see something like this:
+```
+  file.system.id: yourEFSsystemid
+  aws.region: regionyourEFSisin
+```
+Here, replace "yourEFSsystemid" with your EFS ID, and "regionyourEFSisin" with the Region where EFS is deployed.<br>
 Also in line 56, you will see something like this:
 ```
-server: yourEFSsystemID.efs.yourEFSregion.amazonaws.com
+  server: yourEFSsystemID.efs.yourEFSregion.amazonaws.com
 ```
 Here, enter your EFS ID and Region in the same format. For the demonstration purpose, I would enter it as follows:
 ```

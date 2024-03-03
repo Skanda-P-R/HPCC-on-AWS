@@ -1,5 +1,5 @@
 # Installing HPCC Systems on AWS Platform
-### By Skanda P R, R V Colleg le of Engineering.
+### By Skanda P R, R V College of Engineering.
 ## Steps to be followed
 1.  Create an AWS account.
 2.	Create the IAM user.

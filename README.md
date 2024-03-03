@@ -1,4 +1,5 @@
 # Installing HPCC Systems on AWS Platform
+### By Skanda P R, R V Colleg le of Engineering.
 ## Steps to be followed
 1.  Create an AWS account.
 2.	Create the IAM user.
@@ -351,5 +352,5 @@ aws efs delete-mount-target --mount-target-id <mount target ID>
 ```
 aws efs delete-file-system --file-system-id <EFS ID>
 ```
-## If any problems are faced while installing, refer to this YouTube Video:
+## Watch the video demonstration of the process here:
 https://youtu.be/tfgxUnJaxVc?si=kHZ3A5blGPx0r3wj

@@ -230,8 +230,8 @@ This chart has defined the following HPCC components:
   sasha.file-expiry
   sasha.wu-archiver
 ```
-Now instead of installing the default HPCC Systems platform, we can create a custom configuration YAML file and deploy HPCC System platform using the default configuration plus the customizations. It can be done as follows:
-### To create custom configuration chart for two Roxies and two Thors
+Now instead of installing the default HPCC Systems platform, we can create a **custom configuration** YAML file and deploy HPCC System platform using the default configuration plus the customizations. It can be done as follows:
+### To create custom configuration chart for two Roxies and two Thors (OPTIONAL)
 We can create a new YAML file named "customroxie.yaml", then we can copy the default values from "myvalues.yaml" file as follows:
 ```
 helm show values hpcc/hpcc > myvalues.yaml
